@@ -1,14 +1,73 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../WEB-INF/template-superadmin/template.xhtml">
 
             <ui:define name="content">
-                super admin
+                <section class="content-header">
+                    <h1>
+                        Liste
+                        <small>Categorie</small>
+                    </h1>
+                     <h:form>
+                         <h:commandButton actionListener="#{utilisateurMB.deconnectSuperAdmin()}" value="deconnecter"/>
+                    </h:form>
+                    
+                    <h:link class="btn btn-primary btn-sm" outcome="ajoutCategorie" value="Ajouter Categorie"/>
+                     <h:link class="btn btn-primary btn-sm" outcome="" value="Ajouter Magasin"/>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active">Here</li>
+                    </ol>
+                    
+                </section>
+                <f:view>
+
+
+                    <h:form>
+                        <h1><h:outputText value="List"/></h1>
+                        <h:dataTable value="#{categorieMB.listecategorie}" var="item" class="table table-bordered table-hover">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Libelle"/>
+                                </f:facet>
+                                <h:outputText value="#{item.libelle}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Actions"/>
+                                </f:facet>
+                                <h:link class="btn btn-primary btn-sm" outcome="/super_admin/fiche-categorie?idCategorie=#{item.id}" value="Gerer"/>
+                                &nbsp;
+                                
+                               
+                                
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
+                <!-- Main content -->
+                <section class="content container-fluid">
+
+                     
+                    
+                    
+                </section>
+               
+                
             </ui:define>
 
         </ui:composition>

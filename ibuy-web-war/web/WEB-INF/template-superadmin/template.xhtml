@@ -15,21 +15,37 @@
         <title>Gestion du magasin</title>
     </h:head>
 
-    <h:body>
+    <h:body class="hold-transition skin-blue sidebar-mini">
 
         <div id="top">
-            <ui:insert name="top"><ui:include src="header.xhtml"/></ui:insert>
+            <ui:insert name="top">
+                <ui:include src="header.xhtml"/>
+            </ui:insert>
         </div>
         <div>
             <div id="left">
-                <ui:insert name="left"><ui:include src="left-side.xhtml"/></ui:insert>
+                <ui:insert name="left">
+                    <ui:include src="left-side.xhtml"/>
+                </ui:insert>
             </div>
-            <div id="content" class="left_content">
-                <ui:insert name="content">Content</ui:insert>
-            </div>
+
         </div>
+        <div class="content-wrapper">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+        
+        
         <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
+            <ui:insert name="bottom">
+                <footer class="main-footer">
+                    <!-- To the right -->
+                    <div class="pull-right hidden-xs">
+                        Anything you want
+                    </div>
+                    <!-- Default to the left -->
+                    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+                </footer>
+            </ui:insert>
         </div>
 
     </h:body>

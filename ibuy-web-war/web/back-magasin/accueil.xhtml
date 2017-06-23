@@ -1,14 +1,88 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../WEB-INF/template-back-magasin/template.xhtml">
 
             <ui:define name="content">
-                admin magasin
+                <section class="content-header">
+                    <h1>
+                        Liste
+                        <small>Point De Vente</small>
+                    </h1>
+                    <h:form>
+                        <h:commandButton actionListener="#{utilisateurMB.deconnectAdminMagasin()}" value="deconnecter"/>
+                    </h:form>
+                    <h:link class="btn btn-primary btn-sm" outcome="ajoutPointDeVente" value="Ajouter Point de Vente"/>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active">Here</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content container-fluid">
+
+                     <f:view>
+
+
+                    <h:form>
+                       
+                        <h:dataTable value="#{pointDeVenteMB.listepointdevente}" var="item"  class="table table-bordered table-hover">
+                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Adresse"/>
+                                </f:facet>
+                                <h:outputText value="#{item.adresse}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Contact"/>
+                                </f:facet>
+                                <h:outputText value="#{item.contact}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Email"/>
+                                </f:facet>
+                                <h:outputText value="#{item.email}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Latitude"/>
+                                </f:facet>
+                                <h:outputText value="#{item.latitude}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Longitude"/>
+                                </f:facet>
+                                <h:outputText value="#{item.longitude}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Actions"/>
+                                </f:facet>
+                                <h:link class="btn btn-primary btn-sm" outcome="/back-magasin/fiche-pointdevente?idPointdevente=#{item.id}" value="Gerer"/>
+                                &nbsp;
+                                
+                               
+                                
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+                    
+                    
+                </section>
+               
+                
             </ui:define>
 
         </ui:composition>

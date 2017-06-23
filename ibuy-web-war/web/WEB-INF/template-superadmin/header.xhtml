@@ -162,7 +162,9 @@
                                     </div>
                                     <div class="pull-right">
                                         
-                                        <h:link class="btn btn-default btn-flat" outcome="/super_admin/login?faces-redirect=true" value="Deconnecter"/>
+                                        <h:form>
+                                            <h:commandButton actionListener="#{utilisateurMB.deconnectSuperAdmin()}" value="deconnecter"/>
+                                        </h:form>
                                     </div>
                                 </li>
                             </ul>

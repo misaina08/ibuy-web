@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template-superadmin/template.xhtml">
+
+            <ui:define name="content">
+                <section class="content-header">
+                    <h1>
+                        Ajout
+                        <small>Categorie</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active">Here</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content container-fluid">
+                    <f:view>
+
+
+                        <h:form>
+                            <h1><h:outputText value="Create/Edit"/></h1>
+                            <h:panelGrid columns="2">
+                                
+                                <h:outputLabel value="Libelle:" for="libelle" />
+                                <h:inputText id="libelle" value="#{categorieMB.categorie.libelle}" title="Libelle" />
+                                <h:commandButton class="btn btn-primary" value="Ajouter" action="#{categorieMB.ajouter()}"/> 
+                        <h:link class="btn btn-secondary" outcome="/super_admin/accueil" value="Revenir à la liste"/>
+                            </h:panelGrid>
+                        </h:form>
+                    </f:view>
+
+                </section>
+               
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

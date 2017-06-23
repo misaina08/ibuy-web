@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template-back-magasin/template.xhtml">
+
+            <ui:define name="content">
+                <section class="content-header">
+                    <h1>
+                        Ajout
+                        <small>Point De Vente</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active">Here</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content container-fluid">
+
+                    
+                    <h:form>
+                    
+                    <h:panelGrid columns="2">
+
+                        <h:outputLabel value="Adresse:" for="adresse" />
+                        <h:inputText class="form-control" id="adresse" value="#{pointDeVenteMB.pointdevente.adresse}" title="Adresse" />
+                        <h:outputLabel value="Contact:" for="contact" />
+                        <h:inputText class="form-control" id="contact" value="#{pointDeVenteMB.pointdevente.contact}" title="Contact" />
+                        <h:outputLabel value="Email:" for="email" />
+                        <h:inputText class="form-control" id="email" value="#{pointDeVenteMB.pointdevente.email}" title="Email" />
+                        <h:outputLabel value="Latitude:" for="latitude" />
+                        <h:inputText class="form-control" id="latitude" value="#{pointDeVenteMB.pointdevente.latitude}" title="Latitude" />
+                        <h:outputLabel value="Longitude:" for="longitude" />
+                        <h:inputText class="form-control" id="longitude" value="#{pointDeVenteMB.pointdevente.longitude}" title="Longitude" />
+
+                        <h:commandButton class="btn btn-primary" value="Ajouter" action="#{pointDeVenteMB.ajouter()}"/> 
+                        <h:link class="btn btn-secondary" outcome="/back-magasin/accueil" value="Revenir à la liste"/>
+                    </h:panelGrid>
+                </h:form>
+                    
+                </section>
+               
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
