@@ -28,4 +28,4 @@ build/*
 ibuy-web-ejb/build/*
 ibuy-web-war/build/*
 
-nbproject/*
+*.properties
