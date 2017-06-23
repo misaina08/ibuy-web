@@ -12,8 +12,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
-import util.Util;
+import util.MessageUtil;
 
 /**
  *
@@ -87,7 +86,7 @@ public class MagasinMB {
     public String ajouter() {
          magasinBean.addMagasin(magasin);
         
-        Util.addFlashInfoMessage("Modification effectué");
+        MessageUtil.addFlashInfoMessage("Modification effectué");
         return "/super_admin/listemagasin?faces-redirect=true";
     }
      public String modifier() {
@@ -95,7 +94,7 @@ public class MagasinMB {
          
         magasin = magasinBean.updateMagasin(magasin);
         
-        Util.addFlashInfoMessage("Modification effectué");
+        MessageUtil.addFlashInfoMessage("Modification effectué");
         return "/super_admin/listemagasin?faces-redirect=true";
     }
      

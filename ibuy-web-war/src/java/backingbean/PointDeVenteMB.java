@@ -76,7 +76,7 @@ public class PointDeVenteMB {
         pointdevente.setMagasin(a);
         pointdeventeBean.creerPointdvente(pointdevente);
         
-        Util.addFlashInfoMessage("Ajout effectué");
+        MessageUtil.addFlashInfoMessage("Ajout effectué");
         return "/back-magasin/accueil?faces-redirect=true";
     }
     public String modifier() {
@@ -85,7 +85,7 @@ public class PointDeVenteMB {
         pointdevente.setMagasin(a);
         pointdevente = pointdeventeBean.update(pointdevente);
         
-        Util.addFlashInfoMessage("Modification effectué");
+        MessageUtil.addFlashInfoMessage("Modification effectué");
         return "/back-magasin/accueil?faces-redirect=true";
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import util.Util;
+import util.MessageUtil;
 
 /**
  *
@@ -68,7 +68,7 @@ public class CategorieMB {
     public String ajouter() {
          superadminBean.addCategorie(categorie);
         
-        Util.addFlashInfoMessage("Modification effectué");
+        MessageUtil.addFlashInfoMessage("Modification effectué");
         return "/super_admin/accueil?faces-redirect=true";
     }
      public String modifier() {
@@ -76,7 +76,7 @@ public class CategorieMB {
         
         categorie = superadminBean.update(categorie);
         
-        Util.addFlashInfoMessage("Modification effectué");
+        MessageUtil.addFlashInfoMessage("Modification effectué");
         return "/super_admin/accueil?faces-redirect=true";
     }
 }
