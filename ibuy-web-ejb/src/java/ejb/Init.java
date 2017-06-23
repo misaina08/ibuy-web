@@ -5,10 +5,7 @@
  */
 package ejb;
 
-import com.mongodb.DB;
 import com.mongodb.MongoClient;
-import java.util.List;
-import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;

@@ -6,10 +6,6 @@
 package ejb;
 
 import entity.Client;
-import entity.Personne;
-import entity.Utilisateur;
-import java.util.List;
-import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;

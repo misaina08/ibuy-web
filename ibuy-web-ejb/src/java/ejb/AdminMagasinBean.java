@@ -6,9 +6,6 @@
 package ejb;
 
 import entity.AdminMagasin;
-import entity.Magasin;
-import entity.Utilisateur;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
