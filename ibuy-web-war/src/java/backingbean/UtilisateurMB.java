@@ -17,8 +17,6 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
-import mongo.MongoDao;
-import mongo.modele.Produit;
 
 /**
  *
@@ -48,33 +46,19 @@ public class UtilisateurMB {
     private Client client = new Client();
 
     public String connectAdminMagasin() {
-        try {
-            AdminMagasin adminMag = adminMagasinBean.findUtilisateur(adminMagasin.getLogin(), adminMagasin.getMdp());
-            Magasin magasinGere = adminMag.getMagasin();
-            Utilisateur admin = adminMag.getAdmin();
 
-            // test find mongodb
-            Produit p = new Produit();
-            p.setDesignation("ts");
-            p.setPrix(new Double(11));
-            MongoDao dao = new MongoDao();
-            dao.find(p);
-            
-            
+        AdminMagasin adminMag = adminMagasinBean.findUtilisateur(adminMagasin.getLogin(), adminMagasin.getMdp());
+        Magasin magasinGere = adminMag.getMagasin();
+        Utilisateur admin = adminMag.getAdmin();
+        if (magasinGere != null && admin != null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getSessionMap().put("adminMagasinSession", admin);
+            context.getExternalContext().getSessionMap().put("magasinSession", magasinGere);
 
-            /*if (magasinGere != null && admin != null) {
-                FacesContext context = FacesContext.getCurrentInstance();
-                context.getExternalContext().getSessionMap().put("adminMagasinSession", admin);
-                context.getExternalContext().getSessionMap().put("magasinSession", magasinGere);
-
-                return "/back-magasin/accueil?faces-redirect=true";
-            } else {
-                return "/back-magasin/login?faces-redirect=true";
-            }*/
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            return "/back-magasin/accueil?faces-redirect=true";
+        } else {
+            return "/back-magasin/login?faces-redirect=true";
         }
-        return "";
 
     }
 
@@ -89,13 +73,35 @@ public class UtilisateurMB {
             return "/super_admin/login?faces-redirect=true";
         }
     }
+    
+     public String connectClient() {
+        Client cli = clientBean.findClient(client.getLogin(), client.getMdp());
 
+        if (cli != null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getSessionMap().put("clientSession", cli);
+            return "/front/accueil?faces-redirect=true";
+        } else {
+            return "/front/login?faces-redirect=true";
+        }
+    }
+
+    
     public String deconnectAdminMagasin() {
+       FacesContext context = FacesContext.getCurrentInstance();
+       context.getExternalContext().getSessionMap().remove("adminMagasinSession");
         return "/back-magasin/login?faces-redirect=true";
     }
 
     public String deconnectSuperAdmin() {
-        return "/super_admin/login?faces-redirect=true";
+       FacesContext context = FacesContext.getCurrentInstance();
+       context.getExternalContext().getSessionMap().remove("superAdminSession");
+        return "/front/accueil?faces-redirect=true";
+    }
+    public String deconnectClient() {
+       FacesContext context = FacesContext.getCurrentInstance();
+       context.getExternalContext().getSessionMap().remove("clientSession");
+        return "/front/accueil?faces-redirect=true";
     }
 
     public SuperAdmin getSuperAdmin() {
