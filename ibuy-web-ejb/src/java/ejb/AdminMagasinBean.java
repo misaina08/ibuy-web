@@ -43,18 +43,7 @@ public class AdminMagasinBean {
         }
     }
     
-    public Utilisateur findUser(String login, String mdp){
-        try{
-            Query query=em.createQuery("SELECT c FROM Utilisateur c WHERE c.login = :login and c.mdp = :mdp ");
-            query.setParameter("login", login);
-            query.setParameter("mdp", mdp);
-            return ((Utilisateur) query.getSingleResult());       
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
-    }
+    
 
     
     // Add business logic below. (Right-click in editor and choose

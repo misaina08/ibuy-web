@@ -46,7 +46,7 @@ public class PointdeventeBean {
     
      public List<PointDeVente> getListPointdevente(){
          FacesContext context = FacesContext.getCurrentInstance();
-         Magasin a =(Magasin) context.getExternalContext().getSessionMap().get("magasin");
+         Magasin a =(Magasin) context.getExternalContext().getSessionMap().get("magasinSession");
         try{
             
             Query cl=em.createQuery("SELECT c FROM PointDeVente c WHERE c.magasin.id = :id ");

@@ -7,6 +7,7 @@ package ejb;
 
 import entity.Client;
 import entity.Personne;
+import entity.Utilisateur;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -29,7 +30,20 @@ public class ClientBean{
     public void persist(Object object) {
         em.persist(object);
     }
-    public List<Client> getListClient(){
+     public Client findClient(String login, String mdp){
+        try{
+            Query query=em.createQuery("SELECT c FROM Client c WHERE c.login = :login and c.mdp = :mdp ");
+            query.setParameter("login", login);
+            query.setParameter("mdp", mdp);
+            return ((Client) query.getSingleResult());       
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+     
+    /*public List<Client> getListClient(){
         try{
             
             Query cl=em.createQuery("SELECT c FROM Client c");
@@ -39,7 +53,7 @@ public class ClientBean{
             e.printStackTrace();
             return null;
         }
-    }
+    }*/
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

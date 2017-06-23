@@ -26,8 +26,8 @@ public class SuperadminBean {
     @PersistenceContext(unitName = "ibuy-web-ejbPU")
     private EntityManager em;
 
-    public void persist(Object object) {
-        em.persist(object);
+    public void addCategorie(Categorie point) {
+        em.persist(point);
     }
 
      public Categorie update(Categorie point) {
