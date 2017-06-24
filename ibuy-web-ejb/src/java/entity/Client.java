@@ -33,6 +33,9 @@ public class Client extends Utilisateur implements Serializable {
 
     @OneToMany(mappedBy = "client")
     private List<ViewMagasin> vues;
+    
+    @OneToMany(mappedBy = "clientQuiSuggere")
+    private List<Suggestion> suggestion;
 
     public Client() {
 
@@ -84,6 +87,14 @@ public class Client extends Utilisateur implements Serializable {
 
     public void setVues(List<ViewMagasin> vues) {
         this.vues = vues;
+    }
+
+    public List<Suggestion> getSuggestion() {
+        return suggestion;
+    }
+
+    public void setSuggestion(List<Suggestion> suggestion) {
+        this.suggestion = suggestion;
     }
     
 

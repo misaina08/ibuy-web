@@ -26,7 +26,4 @@ build/*
 ibuy-web-ejb/build/*
 ibuy-web-war/build/*
 
-ibuy-web-ejb/nbproject/private/private.xml
-ibuy-web-war/nbproject/private/private.xml
-nbproject/private/private.properties
-nbproject/project.properties
+*.properties
