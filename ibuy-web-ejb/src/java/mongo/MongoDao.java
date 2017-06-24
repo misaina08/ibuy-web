@@ -13,7 +13,6 @@ import com.mongodb.util.JSON;
 import java.util.ArrayList;
 import java.util.List;
 import mongo.modele.MongoModele;
-import mongo.modele.Produit;
 import util.JSONUtil;
 import util.MongoUtil;
 
@@ -72,7 +71,7 @@ public class MongoDao implements MongoOperation {
                 res.add(m);
             }
             for(MongoModele mo : res){
-                System.out.println("---"+((Produit)mo).getDesignation());
+//                System.out.println("---"+((Produit)mo).getDesignation());
             }
             
             return res;

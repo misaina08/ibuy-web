@@ -24,6 +24,9 @@ public class Categorie implements Serializable {
     @OneToMany(mappedBy = "categorie")
     private List<CategorieMagasin> categorieMagasin;
     private String libelle;
+    
+    @OneToMany(mappedBy = "categorie")
+    private List<Produit> produits;
 
     public Categorie() {
 

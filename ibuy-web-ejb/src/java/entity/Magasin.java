@@ -21,6 +21,9 @@ public class Magasin implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
+    private Integer nbVues;
+    
+    
     @OneToMany(mappedBy = "magasin")
     private List<Abonnement> abonnements;
     
@@ -40,6 +43,9 @@ public class Magasin implements Serializable {
 
     @OneToMany(mappedBy = "magasin")
     private List<ViewMagasin> vues;
+    
+    @OneToMany(mappedBy = "magasin")
+    private List<Produit> produits;
     
     public Magasin() {
 
@@ -123,6 +129,22 @@ public class Magasin implements Serializable {
 
     public void setVues(List<ViewMagasin> vues) {
         this.vues = vues;
+    }
+
+    public Integer getNbVues() {
+        return nbVues;
+    }
+
+    public void setNbVues(Integer nbVues) {
+        this.nbVues = nbVues;
+    }
+
+    public List<Produit> getProduits() {
+        return produits;
+    }
+
+    public void setProduits(List<Produit> produits) {
+        this.produits = produits;
     }
     
 

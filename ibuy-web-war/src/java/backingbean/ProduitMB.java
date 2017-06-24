@@ -6,10 +6,10 @@
 package backingbean;
 
 import ejb.ProduitBean;
+import entity.Produit;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import mongo.modele.Produit;
 
 /**
  *
@@ -27,23 +27,5 @@ public class ProduitMB {
      */
     public ProduitMB() {
     }
-    
-    private Produit produit = new Produit();
-
-    public String insertProduit(){
-        produit.setQteStock(new Float(30));
-        produit.setUnite("kg");
-        produitBean.save(produit);
-        return "";
-    }
-    
-    public Produit getProduit() {
-        return produit;
-    }
-
-    public void setProduit(Produit produit) {
-        this.produit = produit;
-    }
-    
     
 }

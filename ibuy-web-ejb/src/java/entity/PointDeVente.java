@@ -1,10 +1,12 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * @author Misaina
@@ -24,6 +26,9 @@ public class PointDeVente implements Serializable {
     private long latitude;
     private long longitude;
     private Magasin magasin;
+
+    @OneToMany(mappedBy = "pointDeVente")
+    private List<ProduitPointDeVente> produitPointDeVente;
 
     public PointDeVente() {
 
@@ -83,6 +88,14 @@ public class PointDeVente implements Serializable {
 
     public void setMagasin(Magasin magasin) {
         this.magasin = magasin;
+    }
+
+    public List<ProduitPointDeVente> getProduitPointDeVente() {
+        return produitPointDeVente;
+    }
+
+    public void setProduitPointDeVente(List<ProduitPointDeVente> produitPointDeVente) {
+        this.produitPointDeVente = produitPointDeVente;
     }
 
 }//end PointDeVente

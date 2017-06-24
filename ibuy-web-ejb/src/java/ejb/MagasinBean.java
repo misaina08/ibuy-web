@@ -7,6 +7,7 @@ package ejb;
 
 import entity.CategorieMagasin;
 import entity.Magasin;
+import entity.Produit;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -28,38 +29,45 @@ public class MagasinBean {
     public void addMagasin(Magasin magasin) {
         em.persist(magasin);
     }
+
     public Magasin updateMagasin(Magasin magasin) {
         return em.merge(magasin);
     }
-    public List<Magasin> getListMagasin(){
-        try{
-            
-            Query cl=em.createQuery("SELECT c FROM Magasin c");
+
+    public List<Magasin> getListMagasin() {
+        try {
+
+            Query cl = em.createQuery("SELECT c FROM Magasin c");
             return (List<Magasin>) cl.getResultList();
-        }
-        catch(RuntimeException e){
+        } catch (RuntimeException e) {
             e.printStackTrace();
             return null;
         }
     }
+
     public List<CategorieMagasin> getCategorieMagasin(Magasin magasin) {
-    try{
-       Query cl=em.createQuery("SELECT c FROM CategorieMagasin c WHERE c.magasin.id = :magasin ");
-       cl.setParameter("magasin", magasin.getId());
-           return (List<CategorieMagasin>) cl.getResultList();
-        }
-        catch(RuntimeException e){
+        try {
+            Query cl = em.createQuery("SELECT c FROM CategorieMagasin c WHERE c.magasin.id = :magasin ");
+            cl.setParameter("magasin", magasin.getId());
+            return (List<CategorieMagasin>) cl.getResultList();
+        } catch (RuntimeException e) {
             e.printStackTrace();
             return null;
         }
 
-    
-}
-     
-      public Magasin findMagasinById(Integer id) {
+    }
+
+    public Magasin findMagasinById(Integer id) {
         return em.find(Magasin.class, id);
     }
+    
+    public List<Magasin> getPlusVus(){
+        Query query = em.createQuery("SELECT m FROM Magasin m ORDER BY m.nbVues DESC");
+        query.setMaxResults(20);
+        return (List<Magasin>)query.getResultList();
+    }
+    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
+
 }

@@ -5,10 +5,13 @@
  */
 package ejb;
 
+import entity.Produit;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
-import mongo.MongoDao;
-import mongo.modele.Produit;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -18,16 +21,25 @@ import mongo.modele.Produit;
 @LocalBean
 public class ProduitBean {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    
-    public void save(Produit produit){
-        try{
-            MongoDao mongoDao = new MongoDao();
-            mongoDao.save(produit);
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
+    @PersistenceContext(unitName = "ibuy-web-ejbPU")
+    private EntityManager em;
+
+    public void save(Produit produit) {
+        em.persist(produit);
     }
+    
+    public List<Produit> getDerniersAjout(){
+        Query query = em.createQuery("SELECT p FROM Produit p ORDER BY p.dateAjout DESC");
+        query.setMaxResults(20);
+        return (List<Produit>)query.getResultList();
+    }
+
+    public List<Produit> getPlusVus(){
+        Query query = em.createQuery("SELECT p FROM Produit p ORDER BY p.nbVues DESC");
+        query.setMaxResults(20);
+        return (List<Produit>)query.getResultList();
+    }
+    
+    
+    
 }
