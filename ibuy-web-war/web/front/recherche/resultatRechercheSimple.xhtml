@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template-front/template.xhtml">
+
+            <ui:define name="content">
+                <h:outputText value="resultatRechercheSimple"/><f:view>
+
+                    
+                    <h:form>
+                        
+                        <p>Recherche sur <b><h:outputText value="#{rechercheSimpleMB.search}"/></b></p>
+                        
+                        <h:dataTable value="#{rechercheSimpleMB.resultat}" var="item">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Designation"/>
+                                </f:facet>
+                                <h:outputText value="#{item.designation}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Unite"/>
+                                </f:facet>
+                                <h:outputText value="#{item.unite}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Prix"/>
+                                </f:facet>
+                                <h:outputText value="#{item.prix}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="NbVues"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nbVues}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="DateAjout"/>
+                                </f:facet>
+                                <h:outputText value="#{item.dateAjout}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Magasin"/>
+                                </f:facet>
+                                <h:outputText value="#{item.magasin.nom}"/>
+                            </h:column>
+                            
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

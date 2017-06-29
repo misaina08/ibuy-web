@@ -20,20 +20,19 @@ public class Magasin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+
     private Integer nbVues;
-    
-    
+
     @OneToMany(mappedBy = "magasin")
     private List<Abonnement> abonnements;
-    
+
     @OneToMany(mappedBy = "magasin")
     private List<AdminMagasin> adminsMagasin;
-    
+
     @OneToMany(mappedBy = "magasin")
     private List<CategorieMagasin> categorieMagasin;
     private String description;
-    
+
     @OneToMany(mappedBy = "magasin")
     private List<EvenementMagasin> evenementsMagasin;
     private String logo;
@@ -43,10 +42,10 @@ public class Magasin implements Serializable {
 
     @OneToMany(mappedBy = "magasin")
     private List<ViewMagasin> vues;
-    
+
     @OneToMany(mappedBy = "magasin")
     private List<Produit> produits;
-    
+
     public Magasin() {
 
     }
@@ -146,6 +145,13 @@ public class Magasin implements Serializable {
     public void setProduits(List<Produit> produits) {
         this.produits = produits;
     }
-    
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this.id == ((Magasin) obj).id) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }//end Magasin
