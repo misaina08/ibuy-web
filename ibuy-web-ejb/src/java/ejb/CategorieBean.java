@@ -32,4 +32,8 @@ public class CategorieBean {
         Query query = em.createQuery("SELECT c FROM Categorie c");
         return (List<Categorie>)query.getResultList();
     }
+    
+    public Categorie findById(Integer id){
+        return (Categorie)em.find(Categorie.class, id);
+    }
 }

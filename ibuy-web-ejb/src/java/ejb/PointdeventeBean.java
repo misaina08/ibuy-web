@@ -7,6 +7,7 @@ package ejb;
 
 import entity.Magasin;
 import entity.PointDeVente;
+import entity.ProduitPointDeVente;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -29,37 +30,34 @@ public class PointdeventeBean {
     public void creerPointdvente(PointDeVente point) {
         em.persist(point);
     }
-    
-     public PointDeVente update(PointDeVente point) {
+
+    public PointDeVente update(PointDeVente point) {
         return em.merge(point);
     }
-     
-     public void delete(PointDeVente point) {
+
+    public void delete(PointDeVente point) {
         em.remove(point);
     }
-     
-     
-     
-      public PointDeVente findById(Integer id) {
+
+    public PointDeVente findById(Integer id) {
         return em.find(PointDeVente.class, id);
     }
-    
-     public List<PointDeVente> getListPointdevente(){
-         FacesContext context = FacesContext.getCurrentInstance();
-         Magasin a =(Magasin) context.getExternalContext().getSessionMap().get("magasinSession");
-        try{
-            
-            Query cl=em.createQuery("SELECT c FROM PointDeVente c WHERE c.magasin.id = :id ");
+
+    public List<PointDeVente> getListPointdevente() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Magasin a = (Magasin) context.getExternalContext().getSessionMap().get("magasinSession");
+        try {
+
+            Query cl = em.createQuery("SELECT c FROM PointDeVente c WHERE c.magasin.id = :id ");
             cl.setParameter("id", a.getId());
-            
+
             return (List<PointDeVente>) cl.getResultList();
-        }
-        catch(RuntimeException e){
+        } catch (RuntimeException e) {
             e.printStackTrace();
             return null;
         }
     }
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
 }

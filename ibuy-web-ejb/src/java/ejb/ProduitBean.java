@@ -5,7 +5,9 @@
  */
 package ejb;
 
+import entity.PointDeVente;
 import entity.Produit;
+import entity.ProduitPointDeVente;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -55,13 +57,19 @@ public class ProduitBean {
         if (recherche.getMotCle() != null) {
             criteres.add(" p.designation like '%" + recherche.getMotCle() + "%'");
         }
+        if (recherche.getCategorie() != null) {
+            criteres.add(" p.categorie like '%" + recherche.getCategorie() + "%'");
+        }
+        if (recherche.getMagasin() != null) {
+            criteres.add(" p.magasin like '%" + recherche.getMagasin() + "%'");
+        }
         if (criteres.size() != 0) {
             whereQuery = " WHERE " + whereQuery;
         }
         int i = 0;
         for (String s : criteres) {
             whereQuery += s;
-            if (i < criteres.size()-1) {
+            if (i < criteres.size() - 1) {
                 whereQuery += " and ";
             }
             i++;
@@ -70,6 +78,18 @@ public class ProduitBean {
         Query query = em.createQuery("SELECT p FROM Produit p " + whereQuery + " ORDER BY p.nbVues DESC");
 
         return (List<Produit>) query.getResultList();
+    }
+
+    public List<ProduitPointDeVente> getProduitByPointDeVente(Integer idPointDeVente) {
+        try {
+            Query cl = em.createQuery("SELECT p FROM ProduitPointDeVente p WHERE p.pointDeVente.id = :id ");
+            cl.setParameter("id", idPointDeVente);
+
+            return (List<ProduitPointDeVente>) cl.getResultList();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

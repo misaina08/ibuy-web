@@ -5,7 +5,6 @@
  */
 package mongo.modele.recherche;
 
-
 import java.util.List;
 import mongo.modele.Categorie;
 import mongo.modele.Magasin;
@@ -22,8 +21,9 @@ public class RechercheAvancee extends MongoModele {
     private Float prixMin;
     private Float prixMax;
     private String detail;
-    private Magasin magasin;
-    private Categorie categorie;
+    private String magasin;
+    private String categorie;
+    private Integer client;
 
     public Integer getId() {
         return id;
@@ -65,20 +65,28 @@ public class RechercheAvancee extends MongoModele {
         this.detail = detail;
     }
 
-    public Magasin getMagasin() {
-         return magasin;
+    public String getMagasin() {
+        return magasin;
     }
 
-    public void setMagasin(Magasin magasins) {
-        this.magasin = magasins;
+    public void setMagasin(String magasin) {
+        this.magasin = magasin;
     }
 
-    public Categorie getCategorie() {
+    public String getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(Categorie categories) {
-        this.categorie = categories;
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
     }
-    
+
+    public Integer getClient() {
+        return client;
+    }
+
+    public void setClient(Integer client) {
+        this.client = client;
+    }
+
 }

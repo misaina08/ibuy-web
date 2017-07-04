@@ -10,9 +10,10 @@
             <h:outputScript name="jsf.js" library="javax.faces" target="head" />
 
             <ui:define name="left">
-                <div class="col-md-4">
+
+                <div class="col-md-4 sidenav">
                     <h:form class="form-group">
-                        
+
                         <h:inputText class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.motCle}"/>
                         <h:inputText class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.prixMin}"/>
                         <h:inputText class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.prixMax}"/>
@@ -25,12 +26,30 @@
                                            itemLabel="#{magasin.nom}"/>
                         </h:selectOneMenu>
 
+                        <h:selectOneMenu class="form-control" id="categorie" value="#{rechercheAvanceeMB.categorieSelectionne}"
+                                         converter="#{rechercheAvanceeMB.categorieConverter}">
+                            <f:selectItems value="#{rechercheAvanceeMB.categories}" 
+                                           var="categorie"
+                                           itemValue="#{categorie}"
+                                           itemLabel="#{categorie.libelle}"/>
+                        </h:selectOneMenu>
+                        <h:inputTextarea class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.detail}"/>
+
+
                         <h:commandButton class="btn btn-primary" action="#{rechercheAvanceeMB.rechercher()}" value="Rechercher">
                             <f:ajax execute="@form" render=":resultat"/>
                         </h:commandButton>
                         <h:commandButton class="btn btn-primary" action="#{rechercheAvanceeMB.sauvegarder()}" value="Sauvegarder"/>
                     </h:form>
+
+
+                    <h:dataTable value="#{rechercheAvanceeMB.listeRechercheAvancee}" var="recherche">
+                        <h:column>
+                            <h:outputText value="#{recherche.motCle}"/>
+                        </h:column>
+                    </h:dataTable>
                 </div>
+
             </ui:define>
 
             <ui:define name="content">

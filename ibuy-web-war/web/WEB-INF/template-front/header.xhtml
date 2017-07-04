@@ -26,6 +26,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><h:link outcome="/front/accueil" value="Accueil"/></li>
                     <li><h:link outcome="/front/recherche/rechercheAvancee" value="Recherche avancée"/></li>
+                    <li><h:link rendered="#{clientSession!=null}" outcome="/front/recherche/notifications" value="Notification"/></li>
 
                 </ul>
             </div>

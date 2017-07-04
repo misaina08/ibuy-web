@@ -8,9 +8,10 @@ package backingbean;
 import ejb.CategorieBean;
 import ejb.MagasinBean;
 import ejb.ProduitBean;
+import ejb.RechercheBean;
+import entity.Client;
 
 import entity.Produit;
-import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -30,6 +31,9 @@ import mongo.modele.recherche.RechercheAvancee;
 public class RechercheAvanceeMB {
 
     @EJB
+    private RechercheBean rechercheBean;
+
+    @EJB
     private CategorieBean categorieBean;
 
     @EJB
@@ -47,6 +51,8 @@ public class RechercheAvanceeMB {
     private entity.Categorie categorieSelectionne;
 
     private Boolean divShow = false;
+
+    private List<RechercheAvancee> listeRechercheAvancee;
 
     private Converter magasinConverter = new Converter() {
         /**
@@ -71,6 +77,29 @@ public class RechercheAvanceeMB {
         }
     };
 
+    private Converter categorieConverter = new Converter() {
+        /**
+         * Convertit une String en Categorie.
+         *
+         * @param value valeur à convertir
+         */
+        @Override
+        public Object getAsObject(FacesContext context, UIComponent component, String value) {
+            return categorieBean.findById(new Integer(value));
+        }
+
+        /**
+         * Convertit un Categorie en String.
+         *
+         * @param value valeur à convertir
+         */
+        @Override
+        public String getAsString(FacesContext context, UIComponent component, Object value) {
+            entity.Categorie categorie = (entity.Categorie) value;
+            return categorie.getId() + "";
+        }
+    };
+
     /**
      * Creates a new instance of RechercheAvanceeMB
      */
@@ -78,7 +107,6 @@ public class RechercheAvanceeMB {
     }
 
     public void rechercher() {
-        System.out.println("produit "+rechercheAvancee.getMotCle());
         resultatRecherche = produitBean.rechercher(rechercheAvancee);
         divShow = true;
 //        return "/front/recherche/resultatRechercheAvancee";
@@ -87,14 +115,14 @@ public class RechercheAvanceeMB {
     public String sauvegarder() {
         MongoDao mongoDao = new MongoDao();
         try {
-            mongo.modele.Magasin m = new mongo.modele.Magasin();
-            m.setNom(magasinSelectionne.getNom());
-            rechercheAvancee.setMagasin(m);
+            FacesContext context = FacesContext.getCurrentInstance();
+            Client c = (Client) context.getExternalContext().getSessionMap().get("clientSession");
+            rechercheAvancee.initValues();
+            rechercheAvancee.setId(1);
+            rechercheAvancee.setMagasin(magasinSelectionne.getNom());
+            rechercheAvancee.setCategorie(categorieSelectionne.getLibelle());
+            rechercheAvancee.setClient(c.getId());
             mongoDao.save(rechercheAvancee);
-//            JSONUtil jsonUtil = new JSONUtil();
-////            rechercheAvancee.setMagasins(new ArrayList<Magasin>());
-////            rechercheAvancee.setCategories(new ArrayList<Categorie>());
-//            System.out.println("_________________________"+jsonUtil.parseObjectToJson(rechercheAvancee));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -170,4 +198,29 @@ public class RechercheAvanceeMB {
     public void setDivShow(Boolean divShow) {
         this.divShow = divShow;
     }
+
+    public Converter getCategorieConverter() {
+        return categorieConverter;
+    }
+
+    public void setCategorieConverter(Converter categorieConverter) {
+        this.categorieConverter = categorieConverter;
+    }
+
+    public List<RechercheAvancee> getListeRechercheAvancee() {
+        try {
+            if (listeRechercheAvancee == null) {
+                listeRechercheAvancee = rechercheBean.getRecherche(new RechercheAvancee());
+            }
+            return listeRechercheAvancee;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public void setListeRechercheAvancee(List<RechercheAvancee> listeRechercheAvancee) {
+        this.listeRechercheAvancee = listeRechercheAvancee;
+    }
+
 }
