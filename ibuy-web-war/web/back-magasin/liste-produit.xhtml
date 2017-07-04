@@ -4,17 +4,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+        <f:metadata>  
+        <f:viewParam name="idPointdevente" value="#{pointDeVenteMB.idPointdevente}"  
+                     required="true"/>  
+        <f:viewAction action="#{pointDeVenteMB.loadPointDeVente()}"/>  
+    </f:metadata>
     <body>
 
         <ui:composition template="./../WEB-INF/template-back-magasin/template.xhtml">
 
             <ui:define name="content">
                 <f:view>
-
+                        
 
                     <h:form>
                         <h1><h:outputText value="List"/></h1>
+                        <h:link class="btn btn-secondary" outcome="/back-magasin/ajoutProduit?idPointdevente=#{pointDeVenteMB.idPointdevente}" includeViewParams="true" value="Ajouter Produit"/>
                         <h:dataTable value="#{pointDeVenteMB.listeProduit}" var="item">
                             <h:column>
                                 <f:facet name="header">

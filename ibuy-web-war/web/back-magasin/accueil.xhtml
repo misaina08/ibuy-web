@@ -80,55 +80,8 @@
 
 
 
-                    <h:form>
-                       
-                        <h:dataTable value="#{pointDeVenteMB.listepointdevente}" var="item"  class="table table-bordered table-hover">
-                            
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Adresse"/>
-                                </f:facet>
-                                <h:outputText value="#{item.adresse}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Contact"/>
-                                </f:facet>
-                                <h:outputText value="#{item.contact}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Email"/>
-                                </f:facet>
-                                <h:outputText value="#{item.email}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Latitude"/>
-                                </f:facet>
-                                <h:outputText value="#{item.latitude}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Longitude"/>
-                                </f:facet>
-                                <h:outputText value="#{item.longitude}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Actions"/>
-                                </f:facet>
-                                <h:link class="btn btn-primary btn-sm" outcome="/back-magasin/fiche-pointdevente?idPointdevente=#{item.id}" value="Gerer"/>
-                                
-                                &nbsp;
-                                <h:link class="btn btn-primary btn-sm" outcome="/back-magasin/produit-pointdevente?idPointdevente=#{item.id}" value="Gestion Produit"/>
-                                
-                               
-                                
-                            </h:column>
-                        </h:dataTable>
-                    </h:form>
-                </f:view>
+                  
+                
                     
                     
                 </section>

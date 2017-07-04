@@ -28,9 +28,16 @@ public class ProduitBean {
     @PersistenceContext(unitName = "ibuy-web-ejbPU")
     private EntityManager em;
 
-    public void save(Produit produit) {
-        em.persist(produit);
+    public void save(Produit produit, Integer idPointDeVente) {
+        Produit p = em.merge(produit);
+        PointDeVente a = new PointDeVente();
+        a.setId(idPointDeVente);
+        ProduitPointDeVente b = new ProduitPointDeVente();
+        b.setProduit(p);
+        b.setPointDeVente(a);
+        em.persist(b);
     }
+    
 
     public List<Produit> getDerniersAjout() {
         Query query = em.createQuery("SELECT p FROM Produit p ORDER BY p.dateAjout DESC");

@@ -97,6 +97,8 @@ public class PointDeVenteMB {
     public List<ProduitPointDeVente> getListeProduit() {
         if(listeProduit == null){
             listeProduit = produitBean.getProduitByPointDeVente(idPointdevente);
+            System.out.println("__________"+idPointdevente);
+            System.out.println("__________"+listeProduit.size());
         }
         return listeProduit;
     }
