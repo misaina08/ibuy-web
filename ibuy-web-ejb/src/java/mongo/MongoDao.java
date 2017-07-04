@@ -70,9 +70,9 @@ public class MongoDao implements MongoOperation {
                 MongoModele m = jSONUtil.parseJsonObjectStringToObject(cursor.next().toString(), mongoModele);
                 res.add(m);
             }
-            for(MongoModele mo : res){
-//                System.out.println("---"+((Produit)mo).getDesignation());
-            }
+//            for(MongoModele mo : res){
+////                System.out.println("---"+((Produit)mo).getDesignation());
+//            }
             
             return res;
         }

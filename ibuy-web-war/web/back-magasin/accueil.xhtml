@@ -28,7 +28,56 @@
                 <!-- Main content -->
                 <section class="content container-fluid">
 
-                     <f:view>
+                    <f:view>
+
+
+                        <h:form>
+
+                            <h:dataTable value="#{pointDeVenteMB.listepointdevente}" var="item"  class="table table-bordered table-hover">
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Adresse"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.adresse}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Contact"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.contact}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Email"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.email}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Latitude"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.latitude}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Longitude"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.longitude}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Actions"/>
+                                    </f:facet>
+                                    <h:link class="btn btn-primary btn-sm" outcome="/back-magasin/fiche-pointdevente?idPointdevente=#{item.id}" value="Gérer"/>
+                                    <h:link class="btn btn-primary btn-sm" outcome="/back-magasin/liste-produit?idPointdevente=#{item.id}" value="Gérer les produits"/>
+                                    &nbsp;
+
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>
+                    </f:view>
+
 
 
                     <h:form>
@@ -83,8 +132,8 @@
                     
                     
                 </section>
-               
-                
+
+
             </ui:define>
 
         </ui:composition>

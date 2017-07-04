@@ -24,36 +24,39 @@
                 <ui:include src="header.xhtml"/>
             </ui:insert>
         </div>
-        <div>
-            <div id="left">
-                <ui:insert name="left">Left</ui:insert>
-            </div>
-            <div>
-                <div id="right">
-                    <ui:insert name="right">Right</ui:insert>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div id="left">
+                    <ui:insert name="left">Left</ui:insert>
                 </div>
-                <div id="content">
-                    <ui:insert name="content">
-                  
-                    </ui:insert>
+                <div>
+                    <div id="right">
+                        <ui:insert name="right"></ui:insert>
+                    </div>
+                    <div id="content">
+                        <ui:insert name="content">
+
+                        </ui:insert>
+                    </div>
                 </div>
             </div>
         </div>
-        
+
         <div id="bottom">
             <ui:insert name="bottom">
                 <footer class="container-fluid text-center">
                     <h:link outcome="/back-magasin/login" value="Gestion de magasin"/>
                     &nbsp;
-                     <h:link outcome="/super_admin/login" value="Super Administrateur"/>
-                      &nbsp;
-                     <h:link outcome="/front/login" value="connect" rendered="#{clientSession==null}"/>
-                     
-                     <h:outputText rendered="#{clientSession!=null}" value="#{clientSession.nom}"/>
-                     <h:form>
-                     <h:commandButton rendered="#{clientSession!=null}" actionListener="#{utilisateurMB.deconnectClient()}" value="deconnecter"/>
-                     </h:form>
-                     <a href="#myPage" title="To Top">
+                    <h:link outcome="/super_admin/login" value="Super Administrateur"/>
+                    &nbsp;
+                    <h:link outcome="/front/login" value="connect" rendered="#{clientSession==null}"/>
+
+                    <h:outputText rendered="#{clientSession!=null}" value="#{clientSession.nom}"/>
+                    <h:form>
+                        <h:commandButton rendered="#{clientSession!=null}" actionListener="#{utilisateurMB.deconnectClient()}" value="deconnecter"/>
+                    </h:form>
+                    <a href="#myPage" title="To Top">
                         <span class="glyphicon glyphicon-chevron-up"></span>
                     </a>
                     <p>Made By <a href="#">MBDS</a></p>

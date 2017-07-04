@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./../../WEB-INF/template-front/template.xhtml">
+            <h:outputScript name="jsf.js" library="javax.faces" target="head" />
+
+            <ui:define name="left">
+
+                <div class="col-md-4 sidenav">
+                    <h:form class="form-group">
+
+                        <h:inputText class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.motCle}"/>
+                        <h:inputText class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.prixMin}"/>
+                        <h:inputText class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.prixMax}"/>
+
+                        <h:selectOneMenu class="form-control" id="magasin" value="#{rechercheAvanceeMB.magasinSelectionne}"
+                                         converter="#{rechercheAvanceeMB.magasinConverter}">
+                            <f:selectItems value="#{rechercheAvanceeMB.magasins}" 
+                                           var="magasin"
+                                           itemValue="#{magasin}"
+                                           itemLabel="#{magasin.nom}"/>
+                        </h:selectOneMenu>
+
+                        <h:selectOneMenu class="form-control" id="categorie" value="#{rechercheAvanceeMB.categorieSelectionne}"
+                                         converter="#{rechercheAvanceeMB.categorieConverter}">
+                            <f:selectItems value="#{rechercheAvanceeMB.categories}" 
+                                           var="categorie"
+                                           itemValue="#{categorie}"
+                                           itemLabel="#{categorie.libelle}"/>
+                        </h:selectOneMenu>
+                        <h:inputTextarea class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.detail}"/>
+
+
+                        <h:commandButton class="btn btn-primary" action="#{rechercheAvanceeMB.rechercher()}" value="Rechercher">
+                            <f:ajax execute="@form" render=":resultat"/>
+                        </h:commandButton>
+                        <h:commandButton class="btn btn-primary" action="#{rechercheAvanceeMB.sauvegarder()}" value="Sauvegarder"/>
+                    </h:form>
+
+
+                    <h:dataTable value="#{rechercheAvanceeMB.listeRechercheAvancee}" var="recherche">
+                        <h:column>
+                            <h:outputText value="#{recherche.motCle}"/>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="col-md-8">
+                    <f:view>
+                        <h:panelGroup id="resultat">
+                            <h:panelGroup  rendered="#{rechercheAvanceeMB.divShow}">
+                                <ui:include src="/front/recherche/resultatRechercheAvancee.xhtml"></ui:include>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    </f:view>
+                </div>
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

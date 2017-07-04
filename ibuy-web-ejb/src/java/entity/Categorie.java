@@ -55,5 +55,13 @@ public class Categorie implements Serializable {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this.id == ((Categorie) obj).id) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }//end Categorie

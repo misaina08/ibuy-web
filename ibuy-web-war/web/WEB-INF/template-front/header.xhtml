@@ -12,10 +12,26 @@
                 </button>
                 <a class="navbar-brand" href="#myPage">Logo</a>
             </div>
+            <div class="col-sm-8 col-md-8">
+                <h:form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <h:inputText class="form-control" value="#{rechercheSimpleMB.search}"/>
+                        <div class="input-group-btn">
+                            <h:commandButton class="btn btn-default" type="submit" action="#{rechercheSimpleMB.rechercher}"><i class="glyphicon glyphicon-search"></i></h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><h:link outcome="/front/accueil" value="Accueil"/></li>
+
                    <li><h:link outcome="/front/magasin" value="Magasin"/></li>
+
+                    <li><h:link outcome="/front/recherche/rechercheAvancee" value="Recherche avancée"/></li>
+                    <li><h:link rendered="#{clientSession!=null}" outcome="/front/recherche/notifications" value="Notification"/></li>
+
+
                 </ul>
             </div>
         </div>

@@ -80,6 +80,7 @@ public class JSONUtil {
             fieldsMongoModele = baseModele.getClass().getDeclaredFields();
             //Log.i("taille ", fieldsMongoModele.length+"");
             JSONObject jsonObject = new JSONObject(jsonStr);
+            System.out.println("huhu "+jsonStr);
             for (int i = 0; i < fieldsMongoModele.length; i++) {
                 if (fieldsMongoModele[i].getName().compareToIgnoreCase("serialVersionUID") == 0
                         || fieldsMongoModele[i].getName().compareToIgnoreCase("$change") == 0) {
@@ -90,7 +91,26 @@ public class JSONUtil {
                 //Log.i("field : ",fieldsMongoModele[i].getName());
 
                 Method method = result.getClass().getMethod("set" + util.premierMaj(fieldsMongoModele[i].getName()), type);
-                Object param = util.setValueInString(fieldsMongoModele[i], jsonObject.getString(fieldsMongoModele[i].getName()));
+                
+                Object param;
+                String valueParam = "";
+                System.out.println("haha "+fieldsMongoModele[i].getType().getName());
+                switch(fieldsMongoModele[i].getType().getName()){
+                    case "java.lang.Integer":
+                        
+                        valueParam = jsonObject.getInt(fieldsMongoModele[i].getName())+"";
+                        break;
+                    case "java.lang.Float":
+                        valueParam = jsonObject.getDouble(fieldsMongoModele[i].getName())+"";
+                        break;
+                    case "java.util.Date":
+                        valueParam = jsonObject.getString(fieldsMongoModele[i].getName())+"";
+                        break;
+                    case "java.lang.String":
+                        valueParam = jsonObject.getString(fieldsMongoModele[i].getName())+"";
+                        break;
+                }
+                param = util.setValueInString(fieldsMongoModele[i], valueParam);
                 Object objet = method.invoke(result, param);
             }
 
