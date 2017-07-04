@@ -5,7 +5,9 @@
  */
 package ejb;
 
+import entity.Abonnement;
 import entity.Client;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -23,8 +25,8 @@ public class ClientBean{
     @PersistenceContext(unitName = "ibuy-web-ejbPU")
     private EntityManager em;
 
-    public void persist(Object object) {
-        em.persist(object);
+    public void addAbonne(Abonnement abonne) {
+        em.persist(abonne);
     }
      public Client findClient(String login, String mdp){
         try{
@@ -39,6 +41,19 @@ public class ClientBean{
         }
     }
      
+     public List<Abonnement> getListAbonnement(Integer id) {
+        try {
+
+            Query cl = em.createQuery("SELECT c FROM Abonnement c WHERE c.client.id = :id");
+            cl.setParameter("id", id);
+            return (List<Abonnement>) cl.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+     
+  
     /*public List<Client> getListClient(){
         try{
             

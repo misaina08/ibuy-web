@@ -5,6 +5,7 @@
  */
 package ejb;
 
+import entity.PointDeVente;
 import entity.Produit;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -40,6 +41,10 @@ public class ProduitBean {
         return (List<Produit>)query.getResultList();
     }
     
-    
+    public List<Produit> getListProduit(PointDeVente a){
+        Query cl = em.createQuery("SELECT p FROM ProduitPointDeVente p WHERE p.pointDeVente.id = :a");
+        cl.setParameter("a", a.getId());
+        return (List<Produit>)cl.getResultList();
+    }
     
 }
