@@ -3,24 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:m="http://code.google.com/p/gmaps4jsf/">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
    <f:metadata>  
        <f:viewParam name="idMagasin" value="#{magasinMB.idMagasin}"  
                      required="true"/>  
        <f:viewAction action="#{magasinMB.loadMagasin()}"/>  
       
     </f:metadata>
-    
-    
-    <head>
-    <script
-    src="http://maps.googleapis.com/maps/api/js?v=3;sensor=true;key=AIzaSyBZ7LCXYea9A5rIiRA0kiUMQcwXjVdv2ok"
-    type="text/javascript"></script>
-    </head>
-    
-    
+
     <body>
 
        <ui:composition template="./../WEB-INF/template-front/template.xhtml">
@@ -30,67 +20,8 @@
                     <h:form>
                         <div id="portfolio" class="container-fluid text-center bg-white">
                             <h2>#{magasinMB.magasin.nom}</h2>
-                            <h2>#{magasinMB.magasin.description}</h2>
-                            <h2>#{magasinMB.magasin.nbVues}</h2>
-                            <h2>#{magasinMB.magasin.logo}</h2>
                             <h:commandLink class="btn btn-primary btn-sm" action="#{clientMB.ajoutabonne(magasinMB.idMagasin)}" rendered="#{clientSession!=null}" value="S'abonner"/>
                         </div>
-
-
-
-                        
-                            <h1><h:outputText value="List"/></h1>
-                            <h:dataTable value="#{magasinMB.listeproduit}" var="item">
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Id"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.id}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Designation"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.designation}"/>
-                                </h:column>
-                                
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Prix"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.prix}"/>
-                                </h:column>
-                                
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Description"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.description}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="NbVues"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.nbVues}"/>
-                                </h:column>
-                               
-                             
-                               
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Photo"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.photo}"/>
-                                </h:column>
-                            </h:dataTable>
-                        
-
-                        <!-- google map -->
-                       <m:map width="600px" height="600px" latitude="37.4" longitude="-122">
-                       <m:marker latitude="37.4" longitude="-122" draggable="true"/>
-                       <m:htmlInformationWindow latitude="37.4" longitude="-122" htmlText="Hello World" />
-                       </m:map>
-                        
                     </h:form>
 
                 </f:view>

@@ -32,8 +32,6 @@ public class ProduitMB {
     @EJB
     private ProduitBean produitBean;
 
-    
-    
     public Produit getProduit() {
         return produit;
     }
