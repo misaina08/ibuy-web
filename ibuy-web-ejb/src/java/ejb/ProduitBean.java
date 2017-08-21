@@ -5,7 +5,6 @@
  */
 package ejb;
 
-import entity.Magasin;
 import entity.PointDeVente;
 import entity.Produit;
 import entity.ProduitPointDeVente;
@@ -95,11 +94,7 @@ public class ProduitBean {
         return (List<Produit>)cl.getResultList();
     }
     
-    public List<Produit> getListProduitParMagasin(Integer a){
-         Query cl = em.createQuery("SELECT p FROM Produit p WHERE p.magasin.id = :a");
-        cl.setParameter("a", a);
-        return (List<Produit>)cl.getResultList();
-    }
+
 
     public List<ProduitPointDeVente> getProduitByPointDeVente(Integer idPointDeVente) {
         try {

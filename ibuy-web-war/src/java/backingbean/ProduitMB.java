@@ -12,7 +12,6 @@ import entity.Magasin;
 import entity.PointDeVente;
 import entity.Produit;
 import java.util.Date;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -33,8 +32,6 @@ public class ProduitMB {
     @EJB
     private ProduitBean produitBean;
 
-    
-    
     public Produit getProduit() {
         return produit;
     }
