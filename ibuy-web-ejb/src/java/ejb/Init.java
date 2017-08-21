@@ -6,6 +6,10 @@
 package ejb;
 
 import com.mongodb.MongoClient;
+import entity.AdminMagasin;
+import entity.Client;
+import entity.SuperAdmin;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
@@ -20,11 +24,11 @@ import javax.persistence.PersistenceContext;
  */
 @DataSourceDefinition(
         className = "oracle.jdbc.pool.OracleDataSource",
-        name = "jdbc/oracle",
+        name = "ibuy",
         url = "jdbc:oracle:thin:@localhost:1521:XE",
-        user = "shopping",
-        password = "shopping",
-        databaseName = "shopping"
+        user = "intellishop",
+        password = "intellishop",
+        databaseName = "intellishop"
 )
 @Singleton
 @LocalBean
@@ -52,6 +56,20 @@ public class Init {
 //                    System.out.println("\t + Collection: " + colName);
 //                }
 //            }
+//            Client c = new Client();
+//            c.setNom("Premier");
+//            c.setPrenom("Client");
+//            c.setDateInscription(new Date());
+//            c.setLogin("client1");
+//            c.setMdp("client1");
+//            c.setEmail("c@gmail.com");
+//            em.persist(c);
+//            
+//            SuperAdmin superAdmin = new SuperAdmin();
+//            superAdmin.setMdp("super");
+//            superAdmin.setLogin("super");
+//            em.persist(superAdmin);
+                    
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
