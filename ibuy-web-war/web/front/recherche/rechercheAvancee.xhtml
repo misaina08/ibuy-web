@@ -13,12 +13,10 @@
 
                 <div class="col-md-4 sidenav">
                     <h:form class="form-group">
-                        <h:outputLabel for="motcle">Mot clé</h:outputLabel>
-                        <h:inputText class="form-control" id="motcle"  value="#{rechercheAvanceeMB.rechercheAvancee.motCle}"/>
-                        <h:outputLabel for="min">Min</h:outputLabel>
-                        <h:inputText class="form-control" id="min" value="#{rechercheAvanceeMB.rechercheAvancee.prixMin}"/>
-                        <h:outputLabel for="max">Max</h:outputLabel>
-                        <h:inputText class="form-control" id="max" value="#{rechercheAvanceeMB.rechercheAvancee.prixMax}"/>
+
+                        <h:inputText class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.motCle}"/>
+                        <h:inputText class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.prixMin}"/>
+                        <h:inputText class="form-control" value="#{rechercheAvanceeMB.rechercheAvancee.prixMax}"/>
 
                         <h:selectOneMenu class="form-control" id="magasin" value="#{rechercheAvanceeMB.magasinSelectionne}"
                                          converter="#{rechercheAvanceeMB.magasinConverter}">
