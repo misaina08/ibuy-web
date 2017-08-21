@@ -6,8 +6,10 @@
 package backingbean;
 
 import ejb.MagasinBean;
+import ejb.ProduitBean;
 import entity.CategorieMagasin;
 import entity.Magasin;
+import entity.Produit;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -23,7 +25,12 @@ import util.MessageUtil;
 public class MagasinMB {
 
     @EJB
+    private ProduitBean produitBean;
+
+    @EJB
     private MagasinBean magasinBean;
+    
+    
     
     
 
@@ -38,7 +45,20 @@ public class MagasinMB {
     Magasin magasin = new Magasin();
     private int idMagasin;
     private List<CategorieMagasin> categoriemagasin;
+    private List<Produit> listeproduit;
 
+    public List<Produit> getListeproduit() {
+        if (listeproduit == null){
+            listeproduit = produitBean.getListProduitParMagasin(idMagasin);
+        }
+       
+        return listeproduit;
+    }
+
+    public void setListeproduit(List<Produit> listeproduit) {
+        this.listeproduit = listeproduit;
+    }
+    
     
     public List<CategorieMagasin> getCategoriemagasin() {
         return categoriemagasin;
