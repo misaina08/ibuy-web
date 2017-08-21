@@ -29,3 +29,5 @@ ibuy-web-ejb/build/*
 ibuy-web-war/build/*
 
 *.properties
+/ibuy-web-ejb/dist/
+/ibuy-web-war/dist/
